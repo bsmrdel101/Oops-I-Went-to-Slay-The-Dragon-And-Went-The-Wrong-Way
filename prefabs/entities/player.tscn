@@ -19,8 +19,11 @@ size = Vector2(20, 21.3333)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_4j202")
+deceleration = 5000.0
+dash_speed = 500.0
 jump_velocity = -650.0
 gravity = 3500
+metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.564098, 0.5625)
