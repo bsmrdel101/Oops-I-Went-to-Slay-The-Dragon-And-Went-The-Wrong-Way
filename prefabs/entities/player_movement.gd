@@ -25,7 +25,7 @@ func _physics_process(delta):
 	if Input.is_action_pressed("jump") and is_on_floor():
 		handle_jump()
 		
-	if Input.is_action_just_pressed("dash") and not dash_used:
+	if Input.is_action_just_pressed("dash") and not dash_used and speed <= move_speed:
 		handle_dash()
 
 	if direction:
