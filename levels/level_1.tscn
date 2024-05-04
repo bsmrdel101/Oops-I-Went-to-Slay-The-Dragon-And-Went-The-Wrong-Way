@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://88cbmv4isc3w"]
 
 [ext_resource type="Texture2D" uid="uid://56l23vjcmmo" path="res://sprites/environment/tilemap.png" id="1_bor4u"]
-[ext_resource type="PackedScene" uid="uid://blh4l015smuw2" path="res://prefabs/entities/player.tscn" id="2_h7oy2"]
+[ext_resource type="PackedScene" uid="uid://blh4l015smuw2" path="res://prefabs/entities/player/player.tscn" id="2_h7oy2"]
 
 [sub_resource type="Environment" id="Environment_qs1bp"]
 ambient_light_color = Color(0, 0.334051, 0, 1)

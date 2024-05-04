@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://blh4l015smuw2"]
 
-[ext_resource type="Script" path="res://prefabs/entities/player_movement.gd" id="1_4j202"]
+[ext_resource type="Script" path="res://prefabs/entities/player/player_movement.gd" id="1_4j202"]
 [ext_resource type="Texture2D" uid="uid://4ex3wpr77i53" path="res://icon.svg" id="1_q3k5b"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yfxqs"]
@@ -23,6 +23,7 @@ deceleration = 5000.0
 dash_speed = 500.0
 jump_velocity = -800.0
 gravity = 3500
+dive_boost = 400.0
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
