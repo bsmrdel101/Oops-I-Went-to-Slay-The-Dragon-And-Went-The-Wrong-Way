@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Oops... I Went to Slay The Dragon And Went The Wrong Way"
-run/main_scene="res://levels/game.tscn"
+run/main_scene="res://levels/level_1.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -60,3 +60,5 @@ interact={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.200715, 0.329506, 0.303425, 1)
+viewport/hdr_2d=true
