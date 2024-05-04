@@ -2,23 +2,28 @@ extends CharacterBody2D
 
 @export_category("Movement")
 @export var move_speed = 300.0
-var speed = move_speed
-@export var cyote_time = 0.1  # Time in seconds for coyote frames
+@export var cyote_time = 0.1
 @export var deceleration = 2000.0
 
 @export_category("Dash")
 @export var dash_speed = 300.0
 @export var dash_time = 0.3
-var dash_used = false
 
 @export_category("Jump")
-@export var jump_velocity = -400.0
+@export var jump_velocity = -650.0
 @export var gravity = 980
 
+var speed = move_speed
+var dash_used = false
 var coyote_timer = 0.0
 
 
-func _physics_process(delta):
+func _process(delta):
+	if is_on_floor():
+		coyote_timer = cyote_time
+	else:
+		coyote_timer -= delta
+	
 	var direction = Input.get_axis("move_left", "move_right")
 	
 	if not is_on_floor():
@@ -29,6 +34,9 @@ func _physics_process(delta):
 
 	if Input.is_action_just_pressed("dash") and not dash_used and speed <= move_speed:
 		handle_dash()
+		
+	if Input.is_action_pressed("dive") and velocity.y > 0:
+		handle_dive()
 
 	if direction:
 		velocity.x = direction * speed
@@ -57,8 +65,5 @@ func handle_dash():
 	dash_used = false
 
 
-func _process(delta):
-	if is_on_floor():
-		coyote_timer = cyote_time
-	else:
-		coyote_timer -= delta
+func handle_dive():
+	velocity.y = -jump_velocity
