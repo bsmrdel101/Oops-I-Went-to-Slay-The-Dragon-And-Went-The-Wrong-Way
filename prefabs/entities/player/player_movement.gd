@@ -18,6 +18,9 @@ extends CharacterBody2D
 @export var dive_boost = 300.0
 @export var dive_jump_window = 0.2
 
+@export_category("References")
+@onready var anim = $AnimatedSprite2D
+
 var speed = move_speed
 var dash_used = false
 var coyote_timer = 0.0
@@ -27,6 +30,8 @@ var direction
 
 
 func _process(delta):
+	anim.play("idle")
+	
 	if is_on_floor():
 		coyote_timer = cyote_time
 	else:
@@ -47,7 +52,8 @@ func _process(delta):
 		handle_dive()
 
 	if direction:
-		velocity.x = direction * (speed > max_speed if max_speed else speed)
+		velocity.x = direction * speed
+		anim.play("run")
 	elif velocity.x != 0:
 		var deceleration_amount = deceleration * delta
 		if abs(velocity.x) <= deceleration_amount:
@@ -62,6 +68,7 @@ func _process(delta):
 
 
 func handle_jump():
+	anim.play("jump")
 	velocity.y = jump_velocity
 	coyote_timer = 0.0
 	
@@ -70,6 +77,7 @@ func handle_jump():
 
 
 func handle_dash():
+	anim.play("dash")
 	dash_used = true
 	speed += dash_speed
 	await get_tree().create_timer(dash_time).timeout
@@ -77,6 +85,7 @@ func handle_dash():
 
 
 func handle_dive():
+	anim.play("dive")
 	velocity.y = -jump_velocity
 	is_diving = true
 	dive_jump_timer = dive_jump_window
@@ -85,6 +94,8 @@ func handle_dive():
 func handle_dive_jump():
 	is_diving = false
 	speed += dive_boost
+	if speed > max_speed:
+		speed = max_speed
 
 
 func _physics_process(delta):
